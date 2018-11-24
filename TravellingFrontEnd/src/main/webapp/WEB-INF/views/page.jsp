@@ -22,7 +22,12 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Shubham Travels &mdash;</title>
+<title>Shubham Travels</title>
+<!-- For Showing Active Menu on Page -->
+<script type="text/javascript">
+	window.menu = '${title}';
+	window.contextRoot = '${contextRoot}'
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Shubham Travels Chhindwara" />
 <meta name="keywords"
@@ -51,6 +56,9 @@
 	href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300'
 	rel='stylesheet' type='text/css'>
 
+<!--  For Time Picker CSS -->
+<link href="http://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.css" rel="stylesheet"/>
+
 <!-- Animate.css -->
 <link rel="stylesheet" href="${css}/animate.css">
 <!-- Icomoon Icon Fonts-->
@@ -66,6 +74,8 @@
 <!-- CS Select -->
 <link rel="stylesheet" href="${css}/cs-select.css">
 <link rel="stylesheet" href="${css}/cs-skin-border.css">
+<!-- For adding CSS JQuery Data Table -->
+<link href="${css}/dataTables.bootstrap4.css" rel="stylesheet">
 
 <!-- For custom CSS styling -->
 <link rel="stylesheet" href="${css}/myapp.css">
@@ -85,22 +95,42 @@
 	<div id="fh5co-wrapper">
 		<div id="fh5co-page">
 
-			<!-- Including Navigation  -->
+			<!-- Including Navigation , it should always be there -->
 			<%@include file="./shared/nav-bar.jsp"%>
 
-			<!-- Including Travel info section -->
-			<%@include file="tabular.jsp"%>
+			<!-- Load only when user clicked home -->
+			<c:if test="${userClickedHome == true}">
+				<!-- Including Travel info section -->
+				<%@include file="tabular.jsp"%>
+			</c:if>
 
-			<!-- Including Car Collection Section -->
-			<%@include file="car-collection.jsp"%>
+			<!-- Load only when user clicked home -->
+			<c:if test="${userClickedHome == true}">
+				<!-- Including Car Collection Section -->
+				<%@include file="car-collection.jsp"%>
+			</c:if>
 
-			<!-- Including Popular Destination Section -->
-			<%@include file="popular-destination.jsp"%>
+			<!-- Load only when user clicked home -->
+			<c:if test="${userClickedHome == true}">
+				<!-- Including Popular Destination Section -->
+				<%@include file="popular-destination.jsp"%>
+			</c:if>
 
-			<!-- Including Testimonial Section  -->
-			<%@include file="testimonial.jsp"%>
+			<!-- Load only when user clicked home -->
+			<c:if test="${userClickedHome == true}">
+				<!-- Including Testimonial Section  -->
+				<%@include file="testimonial.jsp"%>
+			</c:if>
 
-			<!-- Including Footer Section -->
+			<!-- Load when user clicked View all cars -->
+			<!-- Load only when user clicked home -->
+			<c:if test="${userClickedCarsList == true || userClickedCatProducts == true}">
+				<!-- Including Vehicle list Section  -->
+				<%@include file="vehicles-list.jsp"%>
+			</c:if>
+
+
+			<!-- Including Footer Section, it should always be there -->
 			<%@include file="./shared/footer.jsp"%>
 
 		</div>
@@ -130,6 +160,12 @@
 	<!-- CS Select -->
 	<script src="${js}/classie.js"></script>
 	<script src="${js}/selectFx.js"></script>
+	<!-- JQuery DataTable Plugin -->
+	<script src="${js}/jquery.dataTables.js"></script>
+	<!-- JQuery DataTable Design -->
+	<script src="${js}/dataTables.bootstrap4.js"></script>
+	<!-- Jquery for Time Picker Library -->
+	<script src="http://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.js"></script>
 
 	<!-- Main JS -->
 	<script src="${js}/myapp.js"></script>
