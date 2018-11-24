@@ -1,2 +1,2 @@
-# travelling-frontEnd
+# Shubham Travels
 Shubham Travels Front End Project
