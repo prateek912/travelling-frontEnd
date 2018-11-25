@@ -8,7 +8,9 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import com.shubhamTravels.TravellingBackEnd.dao.CategoryDao;
 import com.shubhamTravels.TravellingBackEnd.dao.VehicleDao;
+import com.shubhamTravels.TravellingBackEnd.dto.Category;
 import com.shubhamTravels.TravellingBackEnd.dto.Vehicle;
 
 
@@ -16,6 +18,7 @@ public class VehicleTest {
 	private static AnnotationConfigApplicationContext context;
 	private static VehicleDao vehicleDao;
 	private static Vehicle vehicle;
+	private static CategoryDao catDao;
 
 	
 	@BeforeClass
@@ -29,69 +32,76 @@ public class VehicleTest {
 	
 	// Test the add vehicle method
 	@Test
-	@Ignore
 	public void testAddVehicle() {
+		
 		Vehicle vehicle1 = new Vehicle();
 		vehicle1.setName("Skoda Octavia");
 		vehicle1.setBrand("SKODA");
-		vehicle1.setCategoryid(1);
+		vehicle1.setCategory_id(1);
 		vehicle1.setDescription("Sedan with Turbocharged Petrol Engine, Direct Injection System");
 		vehicle1.setRentCharge(16.00);
 		vehicle1.setFuelType("Diesel");
 		vehicle1.setMileage(10);
+		vehicle1.setNumberOfSeater("6");
 		vehicle1.setRegisteredDate(new java.util.Date());
 	
 
 		Vehicle vehicle2 = new Vehicle();
 		vehicle2.setName("Maruti Suzuki Ciaz");
 		vehicle2.setBrand("Maruti Suzuki");
-		vehicle2.setCategoryid(1);
+		vehicle2.setCategory_id(2);
 		vehicle2.setDescription("Sedan with K15 Petrol Engine");
 		vehicle2.setRentCharge(15.00);
 		vehicle2.setFuelType("Petrol");
 		vehicle2.setMileage(9);
+		vehicle2.setNumberOfSeater("4");
 		vehicle2.setRegisteredDate(new java.util.Date());
 		
 		Vehicle vehicle3 = new Vehicle();
 		vehicle3.setName("Renault Duster");
 		vehicle3.setBrand("Renault");
-		vehicle3.setCategoryid(2);
+		vehicle3.setCategory_id(2);
 		vehicle3.setDescription("SUV with 4 Cylinder In-line");
 		vehicle3.setFuelType("Diesel");
 		vehicle3.setRentCharge(17.00);
 		vehicle3.setMileage(8);
+		vehicle3.setNumberOfSeater("6");
 		vehicle3.setRegisteredDate(new java.util.Date());
 		
 		Vehicle vehicle4 = new Vehicle();
 		vehicle4.setName("Maruti Suzuki Omni");
 		vehicle4.setBrand("Maruti Suzuki");
-		vehicle4.setCategoryid(3);
+		vehicle4.setCategory_id(3);
 		vehicle4.setDescription("he Omni is an affordable and frugal urban van for large families and taxi operators");
 		vehicle4.setFuelType("CNG");
 		vehicle4.setRentCharge(11.00);
 		vehicle4.setMileage(17);
+		vehicle4.setNumberOfSeater("2");
 		vehicle4.setRegisteredDate(new java.util.Date());
 		
 		
 		Vehicle vehicle5 = new Vehicle();
 		vehicle5.setName("Nano");
 		vehicle5.setBrand("TATA");
-		vehicle5.setCategoryid(5);
+		vehicle5.setCategory_id(5);
 		vehicle5.setDescription("Budget range 4 people car");
 		vehicle5.setFuelType("CNG");
 		vehicle5.setRentCharge(9.00);
 		vehicle5.setMileage(13);
+		vehicle5.setNumberOfSeater("4");
 		vehicle5.setRegisteredDate(new java.util.Date());
 		
 		Vehicle vehicle6 = new Vehicle();
-		vehicle6.setName("Mini Cooper");
-		vehicle6.setBrand("MINI Cooper");
-		vehicle6.setCategoryid(5);
-		vehicle6.setDescription("Budget range 4 people car");
+		vehicle6.setName("PickUp");
+		vehicle6.setBrand("TATA");
+		vehicle6.setCategory_id(4);
+		vehicle6.setDescription("Pickup Van");
 		vehicle6.setFuelType("Petrol");
-		vehicle6.setRentCharge(10.00);
-		vehicle6.setMileage(7);
+		vehicle6.setRentCharge(9.00);
+		vehicle6.setMileage(13);
+		vehicle6.setNumberOfSeater("4");
 		vehicle6.setRegisteredDate(new java.util.Date());
+		
 		
 		assertEquals("Failed while adding vehicle!!",true,vehicleDao.addVehicle(vehicle1));
 		assertEquals("Failed while adding vehicle!!",true,vehicleDao.addVehicle(vehicle2));
@@ -111,6 +121,7 @@ public class VehicleTest {
 	
 	// Testing update vehicle method
 	@Test
+	@Ignore
 	public void testVechileupdate() {
 		vehicle = vehicleDao.getVehicleById(6);
 		vehicle.setBooked(true);

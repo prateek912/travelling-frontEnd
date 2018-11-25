@@ -28,7 +28,7 @@ public class CategoryTest {
 
 	// Testing Category add method
 	@Test
-	@Ignore
+
 	public void testAddCategory() {
 
 		// Creating dummy object

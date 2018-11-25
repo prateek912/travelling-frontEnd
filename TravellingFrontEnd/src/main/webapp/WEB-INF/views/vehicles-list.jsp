@@ -4,7 +4,7 @@
 			<!-- First Column -->
 			<!-- To display side bar -->
 			<div class="col-lg-3">
-				<%@include file="./shared/test-filter.jsp"%>
+				<%@include file="./shared/side-filter.jsp"%>
 			</div>
 
 			<!-- Second Column -->

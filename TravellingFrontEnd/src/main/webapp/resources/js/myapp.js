@@ -8,7 +8,6 @@ $(function() {
 	}
 });
 
-;
 (function() {
 
 	'use strict';

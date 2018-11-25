@@ -3,18 +3,20 @@ package com.shubhamTravels.TravellingBackEnd.dto;
 import java.util.Date;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Min;
 
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity
+@Entity(name="Vehicle")
 public class Vehicle {
 
 	@Id
@@ -33,12 +35,10 @@ public class Vehicle {
 	private Double rentCharge;
 	@Column(name="is_active")
 	private boolean active=true;
-	@Column(name="category_id")
+	private int category_id;
 	@JsonIgnore
-	private int categoryid;
-	@Column(name="supplier_id")
-	@JsonIgnore
-	private int supplierId;
+	@ManyToOne(cascade=CascadeType.PERSIST)
+	private Supplier supplier;
 	private int purchases;
 	private int views;
 	private String fuelType;
@@ -49,6 +49,8 @@ public class Vehicle {
 	private boolean booked=false;
 	@Column(name="registered_with_us_on")
 	private Date registeredDate;
+	@Column(name="seater")
+	private String numberOfSeater;
 	
 	// For generating unique code for every vehicle 
 	public Vehicle() {
@@ -59,9 +61,6 @@ public class Vehicle {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getFuelType() {
 		return fuelType;
@@ -127,22 +126,6 @@ public class Vehicle {
 		this.active = active;
 	}
 
-	public int getCategoryid() {
-		return categoryid;
-	}
-
-	public void setCategoryid(int categoryid) {
-		this.categoryid = categoryid;
-	}
-
-	public int getSupplierId() {
-		return supplierId;
-	}
-
-	public void setSupplierId(int supplierId) {
-		this.supplierId = supplierId;
-	}
-
 	public int getPurchases() {
 		return purchases;
 	}
@@ -175,11 +158,42 @@ public class Vehicle {
 		this.registeredDate = registeredDate;
 	}
 
+	public String getNumberOfSeater() {
+		return numberOfSeater;
+	}
+
+	public void setNumberOfSeater(String numberOfSeater) {
+		this.numberOfSeater = numberOfSeater;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Supplier getSupplier() {
+		return supplier;
+	}
+
+	public void setSupplier(Supplier supplier) {
+		this.supplier = supplier;
+	}
+
+	public int getCategory_id() {
+		return category_id;
+	}
+
 	@Override
 	public String toString() {
 		return "Vehicle [id=" + id + ", code=" + code + ", name=" + name + ", brand=" + brand + ", description="
-				+ description + ", rentCharge=" + rentCharge + ", active=" + active + ", categoryid=" + categoryid
-				+ ", supplierId=" + supplierId + ", purchases=" + purchases + ", views=" + views + ", fuelType="
-				+ fuelType + ", mileage=" + mileage + ", booked=" + booked + "]";
+				+ description + ", rentCharge=" + rentCharge + ", active=" + active + ", category_id=" + category_id
+				+ ", supplier=" + supplier + ", purchases=" + purchases + ", views=" + views + ", fuelType=" + fuelType
+				+ ", mileage=" + mileage + ", booked=" + booked + ", registeredDate=" + registeredDate
+				+ ", numberOfSeater=" + numberOfSeater + "]";
 	}
+
+	public void setCategory_id(int category_id) {
+		this.category_id = category_id;
+	}
+
+	
 }

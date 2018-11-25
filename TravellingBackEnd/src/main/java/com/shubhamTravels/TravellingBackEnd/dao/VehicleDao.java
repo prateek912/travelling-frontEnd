@@ -15,8 +15,9 @@ public interface VehicleDao {
 	
 	// Other methods
 	public List<Vehicle> getAllActiveVehicles();
+	public List<String> getAllSeaterList();
 	
 	// For applying filters
-	public List<Vehicle> getAllAppliedFiltersVehicles(List<Integer> catIds, String fuelType, String mileage);
+	public List<Vehicle> getAllAppliedFiltersVehiclesFinal(List<Integer> catIds, String fuelType, String mileage,String numberOfSeater);
 	
 }

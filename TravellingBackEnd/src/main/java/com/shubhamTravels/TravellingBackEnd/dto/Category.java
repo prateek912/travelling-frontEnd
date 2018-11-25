@@ -1,10 +1,14 @@
 package com.shubhamTravels.TravellingBackEnd.dto;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Category {
@@ -21,12 +25,11 @@ public class Category {
 	@Column(name="is_active")
 	private boolean active= true;
 	
-	
-	public int getId() {
-		return id;
-	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public int getId() {
+		return id;
 	}
 	public String getName() {
 		return name;
@@ -50,5 +53,6 @@ public class Category {
 	public String toString() {
 		return "Category [id=" + id + ", name=" + name + ", description=" + description + ", active=" + active + "]";
 	}
+
 	
 }

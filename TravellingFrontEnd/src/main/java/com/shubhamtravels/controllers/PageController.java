@@ -5,12 +5,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.shubhamTravels.TravellingBackEnd.dao.CategoryDao;
+import com.shubhamTravels.TravellingBackEnd.dao.VehicleDao;
 import com.shubhamTravels.TravellingBackEnd.dto.Category;
 
 @Controller
@@ -18,9 +17,13 @@ public class PageController {
 
 	@Autowired
 	private CategoryDao catDao;
+	@Autowired
+	private VehicleDao vehicleDao;
 
 	// This object will contain category list
 	private List<Category> catList;
+	// This will fetch the number of seater list
+	private List<String> numberOfSeaterList;
 
 	@RequestMapping(value = { "/", "/home", "/index" })
 	public ModelAndView start() {
@@ -30,7 +33,9 @@ public class PageController {
 
 		// Fetching category initially only
 		catList = new ArrayList<>();
+		numberOfSeaterList = new ArrayList<>();
 		catList = catDao.getAllActiveCategories();
+		numberOfSeaterList = vehicleDao.getAllSeaterList();
 
 		return mv;
 	}
@@ -52,11 +57,21 @@ public class PageController {
 			mv.addObject("catList", catList);
 		}
 
+		// If someone directly go to the all vehicle page
+		if (numberOfSeaterList != null) {
+			// Filling up Category block
+			mv.addObject("numberOfSeaterList", numberOfSeaterList);
+
+		} else {
+			numberOfSeaterList = vehicleDao.getAllSeaterList();
+			mv.addObject("numberOfSeaterList", numberOfSeaterList);
+		}
+
 		return mv;
 	}
 
 	// Method to load vehicles of one particular category
-	@RequestMapping("/show/category/{id}/vehicle")
+	/*@RequestMapping("/show/category/{id}/vehicle")
 	public ModelAndView showCatVechicle(@PathVariable("id") int id) {
 		ModelAndView mv = new ModelAndView();
 
@@ -70,9 +85,20 @@ public class PageController {
 			mv.addObject("catList", catList);
 		}
 
+		// If someone directly go to the all vehicle page
+		if (numberOfSeaterList != null) {
+			// Filling up Category block
+			mv.addObject("numberOfSeaterList", numberOfSeaterList);
+
+		} else {
+			numberOfSeaterList = vehicleDao.getAllSeaterList();
+			mv.addObject("numberOfSeaterList", numberOfSeaterList);
+		}
+
 		// Using CategoryDaoImpl to fetch single category
 		Category cat = catDao.getCatById(id);
-		// Passing this object, to get the name and other properties of particular category
+		// Passing this object, to get the name and other properties of particular
+		// category
 		mv.addObject("cat", cat);
 		// Because we are showing about div on same page
 		mv.setViewName("page");
@@ -80,6 +106,6 @@ public class PageController {
 		mv.addObject("userClickedCatProducts", true);
 
 		return mv;
-	}
+	} */
 
 }
