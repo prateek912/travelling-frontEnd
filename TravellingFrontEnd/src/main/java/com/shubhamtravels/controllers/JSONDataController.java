@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.shubhamTravels.TravellingBackEnd.dao.CityDao;
 import com.shubhamTravels.TravellingBackEnd.dao.VehicleDao;
+import com.shubhamTravels.TravellingBackEnd.dto.City;
 import com.shubhamTravels.TravellingBackEnd.dto.Vehicle;
 
 @RestController
@@ -15,6 +17,8 @@ public class JSONDataController {
 
 	@Autowired
 	private VehicleDao vehicleDao;
+	@Autowired
+	private CityDao cityDao;
 	
 	@RequestMapping("/all/vehicles")
 	public List<Vehicle> getAllVehicles(){
@@ -53,6 +57,12 @@ public class JSONDataController {
 	
 		return vehicleDao.getAllAppliedFiltersVehiclesFinal(categoriesId, fuelType, mileage,seater);
 		
+	}
+	
+	// Fetching All Cities
+	@RequestMapping("/getCities")
+	public List<City> getAllCitites(){
+		return cityDao.getAllCities();
 	}
 	
 }

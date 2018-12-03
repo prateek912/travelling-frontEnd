@@ -304,3 +304,6 @@ timepicker.on('change', function(evt) {
 	evt.element.value = value;
 
 });
+
+// For populating Available City list on AJAX call
+

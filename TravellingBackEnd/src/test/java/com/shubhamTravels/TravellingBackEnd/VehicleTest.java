@@ -7,10 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import com.shubhamTravels.TravellingBackEnd.dao.CategoryDao;
 import com.shubhamTravels.TravellingBackEnd.dao.VehicleDao;
-import com.shubhamTravels.TravellingBackEnd.dto.Category;
 import com.shubhamTravels.TravellingBackEnd.dto.Vehicle;
 
 
@@ -18,7 +15,7 @@ public class VehicleTest {
 	private static AnnotationConfigApplicationContext context;
 	private static VehicleDao vehicleDao;
 	private static Vehicle vehicle;
-	private static CategoryDao catDao;
+	
 
 	
 	@BeforeClass

@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.shubhamTravels.TravellingBackEnd.dao.CategoryDao;
+import com.shubhamTravels.TravellingBackEnd.dao.CityDao;
 import com.shubhamTravels.TravellingBackEnd.dao.VehicleDao;
 import com.shubhamTravels.TravellingBackEnd.dto.Category;
+import com.shubhamTravels.TravellingBackEnd.dto.City;
 
 @Controller
 public class PageController {
@@ -19,11 +21,15 @@ public class PageController {
 	private CategoryDao catDao;
 	@Autowired
 	private VehicleDao vehicleDao;
+	@Autowired
+	private CityDao cityDao;
 
 	// This object will contain category list
 	private List<Category> catList;
 	// This will fetch the number of seater list
 	private List<String> numberOfSeaterList;
+	// This will contain List of Cities
+	//private List<City> citylist;
 
 	@RequestMapping(value = { "/", "/home", "/index" })
 	public ModelAndView start() {
@@ -37,6 +43,11 @@ public class PageController {
 		catList = catDao.getAllActiveCategories();
 		numberOfSeaterList = vehicleDao.getAllSeaterList();
 
+		//Fetching City List initially only
+		/*citylist = new ArrayList<>();
+		citylist = cityDao.getAllCities();
+		mv.addObject("cityList", citylist); */
+		
 		return mv;
 	}
 
